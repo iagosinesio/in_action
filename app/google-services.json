@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "405652641325",
+    "firebase_url": "https://inaction-3231c.firebaseio.com",
+    "project_id": "inaction-3231c",
+    "storage_bucket": "inaction-3231c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405652641325:android:cb4375579fd07acf",
+        "android_client_info": {
+          "package_name": "com.banzo.inaction.inaction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405652641325-qkqgqr0fdsva6ulfhtv2tu85keluivc5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.banzo.inaction.inaction",
+            "certificate_hash": "21c2f444beaa1d7204e575990ab4db60a866daa0"
+          }
+        },
+        {
+          "client_id": "405652641325-76s78v07ljv5qqnseku1ef630necrr55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9fXtzjJYpAnBAy1LWgvaaiBpohjWA78w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405652641325-76s78v07ljv5qqnseku1ef630necrr55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
