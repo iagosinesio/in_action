@@ -1,15 +1,16 @@
 package com.banzo.inaction.inaction
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.V
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
 import com.google.firebase.FirebaseApp
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var listV_dados: ListView
     lateinit var firebaseDatabase: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
+    lateinit var listPessoas: MutableList<Pessoas>
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +29,29 @@ class MainActivity : AppCompatActivity() {
         editNome = findViewById(R.id.editNome)
         editEmail = findViewById(R.id.editEmail)
         listV_dados = findViewById(R.id.listV_dados)
-
+        listPessoas = mutableListOf()
+        val pessoaArrayAdapter = ArrayAdapter<Pessoas>
         inicializarFirebase()
+        eventoDatabase()
 
+    }
+
+    private fun eventoDatabase() {
+        databaseReference.child("").addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0!!.exists()){
+                    for (h in p0.children){
+                        val pessoa = h.getValue(Pessoas::class.java)
+                        listPessoas.add(pessoa!!)
+                    }
+                    val
+                }
+            }
+        } )
     }
 
     private fun inicializarFirebase() {
@@ -46,11 +69,12 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        lateinit var p: Pessoa
+
         var id: Int
         id = item!!.itemId
         if (id == R.id.menu_novo){
-            p.uid = (UUID.randomUUID().toString())
+            var p = Pessoas()
+            p.uid=(UUID.randomUUID().toString())
             p.nome = (editNome.text.toString())
             p.email = (editEmail.text.toString())
             databaseReference.child("Pessoa").child(p.uid).setValue(p)
@@ -61,6 +85,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun limparCampos() {
         editEmail.setText("")
-        editNome.setTag("")
+        editNome.setText("")
     }
 }

@@ -1,11 +1,18 @@
 package com.banzo.inaction.inaction;
 
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Pessoas {
     private String uid;
     private String nome;
     private String email;
+
+    private List<Pessoa> listPessoas = new ArrayList<>();
+    private ArrayAdapter<Pessoa> pessoaArrayAdapter;
 
     public String getUid() {
         return uid;
