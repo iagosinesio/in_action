@@ -1,5 +1,6 @@
 package com.banzo.inaction.inaction;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
@@ -42,5 +43,6 @@ public class Pessoas {
     public String toString() {
         return nome;
     }
+
 
 }
