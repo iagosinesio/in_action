@@ -36,15 +36,15 @@ class MainActivity : AppCompatActivity() {
         listV_dados = findViewById(R.id.listV_dados)
         listPessoas = mutableListOf()
 
+        inicializarFirebase()
+        eventoDatabase()
+
         listV_dados.onItemClickListener = AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
             pessoaSelecionada = p0?.getItemAtPosition(p2) as Pessoas
             editNome.setText(pessoaSelecionada.nome)
             editEmail.setText(pessoaSelecionada.email)
         }
 
-
-        inicializarFirebase()
-        eventoDatabase()
 
     }
 
@@ -55,16 +55,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                if (p0.exists()){
-                    for (h in p0.children){
-                        val pessoa = h.getValue(Pessoas::class.java)
-                        listPessoas.add(pessoa!!)
-                    }
-                    val adapter = ArrayAdapter<Pessoas>(this@MainActivity,
-                            android.R.layout.simple_list_item_1, listPessoas)
-                    listV_dados.adapter = adapter
-
+                listPessoas.clear()
+                for (h in p0.children){
+                    val pessoa = h.getValue(Pessoas::class.java)
+                    listPessoas.add(pessoa!!)
                 }
+                val adapter = ArrayAdapter<Pessoas>(this@MainActivity,
+                        android.R.layout.simple_list_item_1, listPessoas)
+                listV_dados.adapter = adapter
+
+
             }
         } )
     }
@@ -72,43 +72,42 @@ class MainActivity : AppCompatActivity() {
     private fun inicializarFirebase() {
         FirebaseApp.initializeApp(this)
         firebaseDatabase = FirebaseDatabase.getInstance()
-        firebaseDatabase.setPersistenceEnabled(true)
+//        firebaseDatabase!!.setPersistenceEnabled(true)
         databaseReference = firebaseDatabase.reference
     }
 // o codigo abaixo cria o menu na tela principal do projeto. Esse meno foi criado com icones
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-
         return super.onCreateOptionsMenu(menu)
     }
 
-
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        var id: Int
-        id = item!!.itemId
+        val id = item!!.itemId
         if (id == R.id.menu_novo){
-            var p = Pessoas()
+            val p = Pessoas()
             p.uid=(UUID.randomUUID().toString())
             p.nome = (editNome.text.toString())
             p.email = (editEmail.text.toString())
             databaseReference.child("Pessoa").child(p.uid).setValue(p)
             limparCampos()
+            return true
         }else if (id == R.id.menu_update){
-            var pessoa = Pessoas()
+            val pessoa = Pessoas()
             pessoa.uid = (pessoaSelecionada.uid)
             pessoa.email = (editEmail.text.toString().trim())
             pessoa.nome = (editNome.text.toString().trim())
             databaseReference.child("Pessoa").child(pessoa.uid).setValue(pessoa)
             limparCampos()
+            return true
         }else if (id == R.id.menu_delete){
-            var pessoa = Pessoas()
+            val pessoa = Pessoas()
             pessoa.uid = (pessoaSelecionada.uid)
             databaseReference.child("Pessoa").child(pessoa.uid).removeValue()
             limparCampos()
+            return true
         }
-        return true
+        return super.onOptionsItemSelected(item)
     }
 
     private fun limparCampos() {
