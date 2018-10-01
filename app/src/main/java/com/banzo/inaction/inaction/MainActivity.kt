@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     private fun inicializarFirebase() {
         FirebaseApp.initializeApp(this)
         firebaseDatabase = FirebaseDatabase.getInstance()
-//        firebaseDatabase!!.setPersistenceEnabled(true)
+//        firebaseDatabase.setPersistenceEnabled(true)
         databaseReference = firebaseDatabase.reference
     }
 // o codigo abaixo cria o menu na tela principal do projeto. Esse meno foi criado com icones
