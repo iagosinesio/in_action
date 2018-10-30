@@ -3,17 +3,13 @@ package com.banzo.inaction.inaction
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
-class Cadastro : AppCompatActivity() {
+class CadastroAvaliador : AppCompatActivity() {
     private var editEmail: EditText? = null
     private var editSenha: EditText? = null
     private var btnRegistrar: Button? = null
@@ -40,10 +36,10 @@ class Cadastro : AppCompatActivity() {
 
     private fun criarUser(email: String, senha: String) {
         auth!!.createUserWithEmailAndPassword(email, senha)
-                .addOnCompleteListener(this@Cadastro) { task ->
+                .addOnCompleteListener(this@CadastroAvaliador) { task ->
                     if (task.isSuccessful) {
                         alert("Usuário cadastrado com sucesso")
-                        val i = Intent(this@Cadastro, Perfil::class.java)
+                        val i = Intent(this@CadastroAvaliador, Perfil::class.java)
                         startActivity(i)
                         finish()
 
@@ -54,7 +50,7 @@ class Cadastro : AppCompatActivity() {
     }
 
     private fun alert(msg: String) {
-        Toast.makeText(this@Cadastro, msg, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@CadastroAvaliador, msg, Toast.LENGTH_SHORT).show()
     }
 
     private fun iniciarComponentes() {

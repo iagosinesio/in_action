@@ -18,10 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <!--<activity android:name=".Login" />-->
-        <activity android:name=".Cadastro" />
+        <!-- <activity android:name=".Login" /> -->
+        <activity
+            android:name=".MeusAlunos"
+            android:label="Meus Alunos" />
+        <activity android:name=".CadastroAvaliador" />
         <activity android:name=".Perfil" />
-        <activity android:name=".ResetSenha"></activity>
+        <activity android:name=".ResetSenha" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CadastroAluno"
+            android:label="Cadastro" />
+        <activity android:name=".Avaliar"
+            android:label="Avaliar"></activity>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".MeusAlunos"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -28,5 +28,15 @@
     <ListView
         android:id="@+id/listV_dados"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="359dp">
+
+    </ListView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdicionar"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="right"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </LinearLayout>

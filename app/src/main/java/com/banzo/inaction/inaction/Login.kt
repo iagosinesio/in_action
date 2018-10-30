@@ -3,15 +3,11 @@ package com.banzo.inaction.inaction
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {
@@ -32,7 +28,7 @@ class Login : AppCompatActivity() {
 
     private fun eventosClicks() {
         btnNovo!!.setOnClickListener {
-            val i = Intent(applicationContext, Cadastro::class.java)
+            val i = Intent(applicationContext, CadastroAvaliador::class.java)
             startActivity(i)
         }
         btnLogar!!.setOnClickListener {
@@ -55,7 +51,7 @@ class Login : AppCompatActivity() {
     private fun login(email: String, senha: String) {
         auth!!.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this@Login) { task ->
             if (task.isSuccessful) {
-                val i = Intent(this@Login, Perfil::class.java)
+                val i = Intent(this@Login, MeusAlunos::class.java)
                 startActivity(i)
             } else {
                 alert("email ou senha invalidos")
